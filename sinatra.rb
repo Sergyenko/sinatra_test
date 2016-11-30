@@ -1,9 +1,22 @@
 require 'sinatra'
 
+set :public_folder, './public'
+
+DATABASE = []
+
 get '/' do
-  "<h1> Welcome to Sinatra</h1><br/><a href='/about'>About</a>"
+  erb :index
 end
 
-get '/about' do
-  "<h1> Hello About Page</h1><br/><a href='/'>Home</a>"
+get "/:username" do
+    @user = params['username']
+    erb :user
+end
+
+post '/' do
+  DATABASE << {
+    :name => params['name'],
+    :message => params['message']
+  }
+  redirect to "/"
 end
