@@ -6,6 +6,6 @@ gem 'thin'
 # - For sinatra-activerecord
 gem "sinatra-activerecord"
 # - Database
-#gem "sqlite3"
+gem "sqlite3"
 # - Task helper
 gem "rake"

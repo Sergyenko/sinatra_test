@@ -4,16 +4,22 @@
 <br/>
 
 <form action="/" method="post">
-  Name: <input type="text" name="name">
+  <p>
+  User:
+  <select name="user_id">
+    <% @users.each do |user| %>
+      <option value=<%= user.id %>><%= user.name %> </option>
+    <% end %>
+  </select>
+  </p>
+  <p>
+  Title: <input type="text" name="title">
+  </p>
+  <p>
+  Body:
   <br/>
-  Message:
+  <textarea rows="4" cols="40" name="body"></textarea>
   <br/>
-  <textarea rows="4" cols="40" name="message"></textarea>
-  <br/>
+  </p>
   <input type="submit" value="Submit">
 </form>
-
-<h2> All Users: </h2>
-<ul>
-  <li><a href="/Sergyenko">Sergyenko</a></li>
-</ul>

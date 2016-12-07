@@ -4,12 +4,15 @@ require 'sinatra/activerecord'
 set :public_folder, './public'
 
 class User < ActiveRecord::Base
-  validates_presence_of :name
+  has_many :posts
 end
 
-DATABASE = []
+class Post < ActiveRecord::Base
+  belongs_to :user
+end
 
 get '/' do
+  @users = User.all
   erb :index
 end
 
@@ -18,15 +21,12 @@ get '/users' do
   erb :users
 end
 
-get "/:username" do
-    @user = params['username']
-    erb :user
+get '/posts' do
+  @posts = Post.all
+  erb :posts
 end
 
 post '/' do
-  DATABASE << {
-    :name => params['name'],
-    :message => params['message']
-  }
+  Post.new(params).save!
   redirect to "/"
 end
